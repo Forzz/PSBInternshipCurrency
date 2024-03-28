@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -30,6 +32,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    dataBinding.enable = true
+    viewBinding.enable = true
 }
 
 dependencies {
@@ -42,4 +47,28 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    // LiveData
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+
+    // Jetpack navigation
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+
+    // Retrofit2
+    implementation(libs.retrofit)
+
+    // GSON
+    implementation(libs.gson)
+
+    // Dagger-Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+}
+
+kapt {
+    correctErrorTypes = true
 }
