@@ -60,6 +60,7 @@ dependencies {
 
     // Retrofit2
     implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
 
     // GSON
     implementation(libs.gson)
@@ -67,6 +68,10 @@ dependencies {
     // Dagger-Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
+
+    // Okhttp
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
 }
 
 kapt {
