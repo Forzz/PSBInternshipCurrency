@@ -3,8 +3,14 @@ package com.forzz.psbinternshipcurrency.presentation.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.forzz.psbinternshipcurrency.R
 import com.forzz.psbinternshipcurrency.databinding.CurrencyItemBinding
 import com.forzz.psbinternshipcurrency.domain.model.Currency
+import com.forzz.psbinternshipcurrency.utils.Extensions.Companion.roundWithZeros
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import kotlin.math.roundToInt
 
 class CurrenciesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -35,8 +41,22 @@ class CurrenciesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun onBind(currency: Currency) {
-            binding.currencyNameTv.text = currency.name
+            val value = currency.value.roundWithZeros(4) + '\u20BD'
+            val currencyChangeValue = currency.value - currency.previous
+
+            binding.currency = currency
+            binding.changeValue = currencyChangeValue.roundWithZeros(4)
+            if (currencyChangeValue >= 0) {
+                binding.changeIv.setImageResource(R.drawable.currency_change_up)
+            } else {
+                binding.changeIv.setImageResource(R.drawable.currency_change_down)
+            }
+            binding.currentValue = value
         }
     }
 
+    private fun convertDateToDayMonth(date: Date): String {
+        val dateFormat = SimpleDateFormat("dd.MM", Locale.getDefault())
+        return dateFormat.format(date)
+    }
 }
