@@ -7,10 +7,6 @@ import com.forzz.psbinternshipcurrency.R
 import com.forzz.psbinternshipcurrency.databinding.CurrencyItemBinding
 import com.forzz.psbinternshipcurrency.domain.model.Currency
 import com.forzz.psbinternshipcurrency.utils.Extensions.Companion.roundWithZeros
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import kotlin.math.roundToInt
 
 class CurrenciesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -53,10 +49,5 @@ class CurrenciesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             binding.currentValue = value
         }
-    }
-
-    private fun convertDateToDayMonth(date: Date): String {
-        val dateFormat = SimpleDateFormat("dd.MM", Locale.getDefault())
-        return dateFormat.format(date)
     }
 }

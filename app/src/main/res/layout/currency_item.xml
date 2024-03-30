@@ -13,7 +13,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="110dp"
         android:layout_marginBottom="4dp"
         android:background="@drawable/currency_background"
         android:padding="8dp">
@@ -23,19 +23,22 @@
             android:id="@+id/nominal_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="12dp"
             android:text="@{String.valueOf(currency.nominal) + ' ' + currency.charCode}"
             android:textSize="22sp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginStart="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/name_tv"
             app:layout_constraintEnd_toStartOf="@+id/change_iv"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/change_iv" />
 
         <TextView
             android:id="@+id/name_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{currency.name}"
+            app:layout_constraintBottom_toBottomOf="@+id/change_iv"
             app:layout_constraintEnd_toEndOf="@+id/nominal_tv"
             app:layout_constraintStart_toStartOf="@+id/nominal_tv"
             app:layout_constraintTop_toBottomOf="@+id/nominal_tv" />
@@ -44,9 +47,9 @@
             android:id="@+id/currency_value_tv"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="@{currentValue}"
-            android:gravity="end"
             android:layout_marginEnd="4dp"
+            android:gravity="end"
+            android:text="@{currentValue}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -55,9 +58,9 @@
             android:id="@+id/change_tv"
             android:layout_width="65dp"
             android:layout_height="wrap_content"
-            android:text="@{changeValue}"
             android:layout_marginEnd="6dp"
             android:gravity="end"
+            android:text="@{changeValue}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/currency_value_tv"
             app:layout_constraintTop_toTopOf="parent" />
