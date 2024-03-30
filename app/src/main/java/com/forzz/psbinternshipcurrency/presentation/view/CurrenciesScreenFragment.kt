@@ -1,5 +1,6 @@
 package com.forzz.psbinternshipcurrency.presentation.view
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -22,7 +23,6 @@ class CurrenciesScreenFragment : Fragment() {
     private lateinit var binding: FragmentCurrenciesScreenBinding
     private val viewModel: CurrenciesScreenViewModel by viewModels()
     private var currenciesAdapter: CurrenciesAdapter? = null
-    private var isDataLoaded: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,50 +34,34 @@ class CurrenciesScreenFragment : Fragment() {
         currenciesAdapter = CurrenciesAdapter()
         binding.currenciesRv.adapter = currenciesAdapter
 
-        viewModel.dailyCurrencies.observe(viewLifecycleOwner, Observer {
+        viewModel.dailyCurrencies.observe(viewLifecycleOwner) {
             updateCurrenciesList(it.currencies)
-            isDataLoaded = true
-        })
+        }
 
-        viewModel.lastSuccessUpdateDateText.observe(viewLifecycleOwner, Observer {
+        viewModel.lastSuccessUpdateDateText.observe(viewLifecycleOwner) {
             binding.successReceiveData = it
-        })
+        }
 
-        viewModel.lastCbrUpdateDateText.observe(viewLifecycleOwner, Observer {
+        viewModel.lastCbrUpdateDateText.observe(viewLifecycleOwner) {
             binding.cbrUpdateDate = it
-        })
+        }
 
-        viewModel.errorMessage.observe(viewLifecycleOwner, Observer {
+        viewModel.errorMessage.observe(viewLifecycleOwner) {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-        })
+        }
 
-        viewModel.isLoading.observe(viewLifecycleOwner, Observer { isLoading ->
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             if (isLoading) {
                 binding.loadingCurrenciesPb.visibility = View.VISIBLE
             } else {
                 binding.loadingCurrenciesPb.visibility = View.GONE
             }
-        })
+        }
 
         return binding.root
     }
 
     private fun updateCurrenciesList(currenciesList: List<Currency>) {
         currenciesAdapter?.updateData(currenciesList)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        savedInstanceState?.let {
-            isDataLoaded = it.getBoolean("isDataLoaded", false)
-        }
-        if (!isDataLoaded) {
-            viewModel.loadCurrencies()
-        }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putBoolean("isDataLoaded", isDataLoaded)
     }
 }

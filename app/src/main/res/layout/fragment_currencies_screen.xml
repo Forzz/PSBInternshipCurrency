@@ -4,8 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="cbrUpdateDate" type="String" />
-        <variable name="successReceiveData" type="String" />
+
+        <variable
+            name="cbrUpdateDate"
+            type="String" />
+
+        <variable
+            name="successReceiveData"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,9 +25,9 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="12dp"
-            android:layout_marginTop="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,8 +38,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@{cbrUpdateDate}"
             android:layout_marginEnd="12dp"
+            android:text="@{cbrUpdateDate}"
+            android:textColor="@color/text_main"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,6 +49,7 @@
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:indeterminateTint="@color/text_main"
             app:layout_constraintBottom_toBottomOf="@+id/currencies_rv"
             app:layout_constraintEnd_toEndOf="@+id/currencies_rv"
             app:layout_constraintStart_toStartOf="@+id/currencies_rv"
@@ -51,8 +59,9 @@
             android:id="@+id/last_success_receive_data_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{successReceiveData}"
             android:layout_marginTop="12dp"
+            android:text="@{successReceiveData}"
+            android:textColor="@color/text_main"
             app:layout_constraintBottom_toTopOf="@+id/currencies_rv"
             app:layout_constraintEnd_toEndOf="@+id/last_cbr_update_date_tv"
             app:layout_constraintTop_toBottomOf="@+id/last_cbr_update_date_tv" />

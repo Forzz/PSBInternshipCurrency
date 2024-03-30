@@ -48,7 +48,7 @@ class CurrenciesScreenViewModel @Inject constructor(
         }
     }
 
-    fun loadCurrencies() {
+    private fun loadCurrencies() {
         _isLoading.postValue(true)
         getDailyCurrenciesUseCase.execute {
             onComplete { dailyCurrenciesResponse ->
